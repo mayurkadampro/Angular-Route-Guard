@@ -14,9 +14,8 @@ export class TermsGuard implements CanDeactivate<TermsComponent> {
     nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if(window.confirm("Hope you read all terms carefully...")){
       return true
-    }else{
-      return false
     }
+    return false;
   }
   
 }

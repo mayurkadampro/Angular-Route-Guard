@@ -10,7 +10,7 @@ import { ViewComponent } from './components/view/view.component';
 import { AuthGuard } from './guard/auth.guard';
 import { ChildGuard } from './guard/child.guard';
 import { LazyauthGuard } from './guard/lazyauth.guard';
-import { ResolveDataGuard } from './guard/resolve-data.guard';
+import { ResolveGuard } from './guard/resolve.guard';
 import { TermsGuard } from './guard/terms.guard';
 
 const routes: Routes = [
@@ -42,23 +42,25 @@ const routes: Routes = [
     path: "getName",
     canActivate: [AuthGuard],
     resolve: {
-      data: ResolveDataGuard
+      data: ResolveGuard
     },
     component: ViewNameComponent
   },
   {
     path: "profile",
+    canActivate: [AuthGuard],
     component: ProfileComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: "terms",
+    canActivate: [AuthGuard],
+    canDeactivate: [TermsGuard],
     component: TermsComponent,
-    canDeactivate: [TermsGuard]
   },
   {
     path: "about",
     canActivate: [AuthGuard],
+    canLoad: [LazyauthGuard],
     loadChildren: () => import("./components/about/about.module").then(m => m.AboutModule)
   },
   {

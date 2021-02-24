@@ -8,18 +8,17 @@ import { AuthService } from '../service/auth.service';
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(
-    private authService: AuthService
-  ){}
+  constructor(private authService: AuthService) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.authService.UserSubjectValue){
+    // put logic here
+    if (this.authService.UserSubjectValue) {
       return true
     }
     window.alert("Please login to continue the service");
     return false;
   }
-  
+
 }

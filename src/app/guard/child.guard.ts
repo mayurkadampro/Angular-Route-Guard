@@ -8,18 +8,16 @@ import { AuthService } from '../service/auth.service';
 })
 export class ChildGuard implements CanActivateChild {
 
-  constructor(
-    private authService: AuthService
-  ){}
+  constructor(private authService: AuthService) { }
 
-  
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if(this.authService.UserSubjectValue){
+    if (this.authService.UserSubjectValue) {
       return true
     }
     window.alert("Please login to continue the service");
     return false;
   }
+
 }
