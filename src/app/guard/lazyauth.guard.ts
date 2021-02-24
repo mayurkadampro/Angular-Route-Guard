@@ -15,6 +15,10 @@ export class LazyauthGuard implements CanLoad {
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authService.UserSubjectValue ? true : false;
+    if (this.authService.UserSubjectValue) {
+      return true;
+    }
+    window.alert("Please login to continue the service");
+    return false;
   }
 }

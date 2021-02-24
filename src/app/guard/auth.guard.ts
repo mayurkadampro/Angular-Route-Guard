@@ -18,6 +18,7 @@ export class AuthGuard implements CanActivate {
     if(this.authService.UserSubjectValue){
       return true
     }
+    window.alert("Please login to continue the service");
     return false;
   }
   

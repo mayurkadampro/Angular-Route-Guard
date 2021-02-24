@@ -19,6 +19,7 @@ export class ChildGuard implements CanActivateChild {
     if(this.authService.UserSubjectValue){
       return true
     }
+    window.alert("Please login to continue the service");
     return false;
   }
 }

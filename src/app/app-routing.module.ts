@@ -40,6 +40,7 @@ const routes: Routes = [
   },
   {
     path: "getName",
+    canActivate: [AuthGuard],
     resolve: {
       data: ResolveDataGuard
     },
